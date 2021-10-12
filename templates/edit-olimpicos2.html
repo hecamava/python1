@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="col-md-4 offset-md-4">
+    <div class="card card-body">
+        <form action="/update/{{Pais,0}}" method="POST"></form>
+          <div class="form-group">
+             <input type="text" name="Pais" placeholder="Pais" value="{{Pais,0}}" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="Oro" placeholder="Oro" value="{{Pais,1}}" class="form-control">
+         </div>
+         <div class="form-group">
+            <input type="text" name="Plata" placeholder="Oro" value="{{Pais,2}}" class="form-control">
+         </div>
+         <div class="form-group">
+            <input type="text" name="Bronce" placeholder="Oro" value="{{Pais,3}}" class="form-control">
+         </div>
+         <div class="form-group">
+            <button type="submit" class="btn btn-primary-btn-block">
+            Guardar
+            </button>
+            </div>
+        </form> 
+          </div>
+</div>
+{% endblock %}

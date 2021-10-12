@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row">
+  <div class=".col-md-5">
+    {% with messages= get_flashed_messages() %}
+    <!--motor de plantillas con Jinja2 para validar mensaje-->
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="card card-body">
+      <form action="/insertmedal" method="POST">
+        <div class="form-group">
+          <input type="text" name="Pais" placeholder="Pais" class="form-control">
+        </div>
+        <div class="form-group"> 
+          <input type="text" name="Oro" placeholder="Oro" class="form-control">
+        </div>
+        <div class="form-group"> 
+        <input type="text" name="Plata" placeholder="Plata" class="form-control">
+        </div>
+        <div class="form-group"> 
+        <input type="text" name="Bronce" placeholder="Bronce" class="form-control">
+        </div>  
+       <div class="form-group">
+         <button type="submit" class="btn-btn-primary btn-block">
+          Guardar
+        </button>
+      </div>
+      </form>
+    </div>
+  </div>
+  <div class=".col-md-7">
+    <table class="table table-striped table-bordered bg-white table-sm">
+      <thead>
+        <tr>
+          <td>Pais</td>
+          <td>Oro</td>
+          <td>Plata</td>
+          <td>Bronce</td>
+          <td>Operaciones</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for olimpico in olimpicos %}
+        <tr>
+          <td> {{olimpico.0}}</td>
+          <td> {{olimpico.1}}</td>
+          <td> {{olimpico.2}}</td>
+          <td> {{olimpico.3}}</td>
+          <td>
+            <a href="/edit_insertmedal/{{olimpico.0}}" class="btn-btn-secondary">Edit</a>
+            <a href="/delete_insertmedal/{{olimpico.0}}" class="btn-btn-danger btn-delete_insertmedal">Delete</a>
+          
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}

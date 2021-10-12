@@ -1,0 +1,75 @@
+{% extends 'layout.html'%}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-5">
+ {% with messages= get_flashed_messages()%}
+ 
+ {%if messages %}
+ {%for message in messages %}
+    </div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+
+    </button>
+
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="card card-body">
+   <form action="/add_olimpicos" method="POST">
+      <div class="form-group">
+          <input type="text" name ="Pais" placeholder="Pais" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="text" name ="Oro" placeholder="Oro" class="form-control">  
+      </div>
+      <div class="form-group">
+        <input type="text" name ="Plata" placeholder="Plata" class="form-control">  
+      </div>
+      <div class="form-group">
+        <input type="text" name ="Bronce" placeholder="Bronce" class="form-control">  
+      </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">
+              Guardar
+          </button>
+      </div>
+    </form>
+   </div>
+</div>
+
+<div class="col-md-7">
+<table class="table table-striped table-bordered bg-white table-sm"></table>
+  <thead>
+      <tr>
+          <td><b><center>Pais</center></b></td>
+          <td><b><center>Oro</center></b></td>
+          <td><b><center>Plata</center></b></td>
+          <td><b><center>Bronce</center></b></td>
+          <td><b><center>Funciones</center></b></td>
+      </tr>
+  </thead>
+  <tbody>
+      {%for Pais in Paises%}
+      <tr>
+          <td>{{Pais,0}}</td>
+          <td>{{Pais,1}}</td>
+          <td>{{Pais,2}}</td> 
+          <td>{{Pais,3}}</td> 
+          <td>
+              <a href="/Editar/{{Pais,0}}" class="btn btn-secondary">Editar</a>
+              <a href="/Borrar/{{Pais,0}}" class="btn btn-danger btn-delete">Borrar</a>
+          </td> 
+        </tr>
+        {% endfor %}
+  </tbody>
+</table>
+</div>
+</div>
+
+
+{% endblock %}
